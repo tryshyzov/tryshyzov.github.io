@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- демо с вымышленным заведением: не показывать в поиске -->
+<meta name="robots" content="noindex">
+<title>Автосервис «Привод» — ремонт с фиксированной ценой и онлайн-записью</title>
+<meta name="description" content="ТО, ремонт подвески, двигателя и тормозов. Цены на сайте, запись онлайн, гарантия 6 месяцев.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #121417;
+  --bg-2: #1a1d21;
+  --panel: #20242a;
+  --panel-2: #282d34;
+  --line: #343a43;
+  --text: #f2f3f5;
+  --text-2: #a9b0ba;
+  --yellow: #f5c518;
+  --yellow-dark: #d9ad0c;
+  --ok: #3ccf8e;
+  --bad: #ff6b5b;
+  --radius: 10px;
+  --font-display: "Unbounded", "Arial Black", sans-serif;
+  --font-text: "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.55 var(--font-text); -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+svg { display: block; }
+:focus-visible { outline: 3px solid var(--yellow); outline-offset: 2px; border-radius: 6px; }
+.wrap { width: min(1160px, 100% - 32px); margin-inline: auto; }
+
+/* header */
+.header { position: sticky; top: 0; z-index: 20; background: rgba(18,20,23,.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.header__row { display: flex; align-items: center; gap: 24px; min-height: 66px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 800 20px/1 var(--font-display); letter-spacing: .02em; }
+.logo svg { width: 34px; height: 34px; color: var(--yellow); }
+.nav { display: flex; gap: 22px; margin-left: auto; }
+.nav a { text-decoration: none; color: var(--text-2); font-weight: 600; font-size: 15px; padding: 8px 0; }
+.nav a:hover { color: var(--text); }
+.header__phone { text-decoration: none; font-weight: 700; white-space: nowrap; }
+@media (max-width: 900px) { .nav { display: none; } .header__phone { margin-left: auto; } }
+@media (max-width: 420px) { .header__phone { display: none; } }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: var(--radius); border: 2px solid transparent; font-weight: 700; text-decoration: none; cursor: pointer; }
+.btn--primary { background: var(--yellow); color: #121417; }
+.btn--primary:hover { background: var(--yellow-dark); }
+.btn--ghost { border-color: var(--line); background: transparent; }
+.btn--ghost:hover { border-color: var(--text-2); }
+.btn--sm { min-height: 40px; padding: 0 16px; }
+@media (max-width: 420px) { .header .btn--sm { padding: 0 12px; } }
+
+/* hero */
+.hero { position: relative; overflow: hidden; padding: 80px 0 72px; border-bottom: 1px solid var(--line); }
+.hero::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    repeating-linear-gradient(-45deg, transparent 0 22px, rgba(245,197,24,.06) 22px 44px) right top / 46% 100% no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%);
+          mask-image: linear-gradient(90deg, transparent, #000 40%);
+}
+.hero__grid { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; }
+@media (max-width: 900px) { .hero { padding: 48px 0; } .hero__grid { grid-template-columns: 1fr; } }
+.hero__grid > * { min-width: 0; }
+@media (max-width: 380px) {
+  .hero h1 { font-size: 27px; }
+  .stats { gap: 8px; }
+  .stat { padding-left: 10px; }
+  .stat b { font-size: 16px; white-space: normal; }
+  .stat span { font-size: 13px; }
+}
+.tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--text-2); margin: 0 0 20px; }
+.tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+.hero h1 { font: 800 clamp(32px, 5.4vw, 60px)/1.05 var(--font-display); margin: 0 0 20px; text-transform: uppercase; letter-spacing: -.01em; text-wrap: balance; }
+.hero h1 span { color: var(--yellow); }
+.hero__lead { color: var(--text-2); font-size: 18px; max-width: 32em; margin: 0 0 28px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 40px; }
+.stat { border-left: 3px solid var(--yellow); padding-left: 14px; }
+.stat b { display: block; font: 700 clamp(20px, 2.4vw, 26px)/1.1 var(--font-display); white-space: nowrap; }
+.stat span { font-size: 14px; color: var(--text-2); }
+.hero__card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.hero__card h2 { margin: 0 0 16px; font: 700 18px/1.3 var(--font-display); text-transform: uppercase; }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.checklist li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; }
+.checklist svg { width: 22px; height: 22px; color: var(--yellow); margin-top: 1px; }
+.checklist b { display: block; }
+.checklist span { color: var(--text-2); font-size: 15px; }
+
+/* sections */
+.section { padding: 80px 0; }
+.section--alt { background: var(--bg-2); border-block: 1px solid var(--line); }
+.section__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 32px; }
+.section h2 { font: 800 clamp(26px, 3.8vw, 40px)/1.1 var(--font-display); text-transform: uppercase; margin: 0; }
+.section__note { color: var(--text-2); margin: 0; max-width: 32em; }
+
+/* price */
+.price-tools { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+.search { position: relative; flex: 1 1 260px; }
+.search input { width: 100%; min-height: 48px; padding: 0 14px 0 44px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); }
+.search input::placeholder { color: var(--text-2); }
+.search svg { position: absolute; left: 14px; top: 50%; translate: 0 -50%; width: 20px; height: 20px; color: var(--text-2); }
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; min-height: 48px; padding: 0 16px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--panel); font-weight: 600; cursor: pointer; white-space: nowrap; }
+.chip:hover { border-color: var(--text-2); }
+.chip[aria-pressed="true"] { background: var(--yellow); border-color: var(--yellow); color: #121417; }
+.price-table { width: 100%; border-collapse: collapse; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.price-table th, .price-table td { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.price-table thead th { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-2); font-weight: 700; background: var(--panel-2); }
+.price-table tbody tr:last-child td { border-bottom: 0; }
+.price-table td:nth-child(2), .price-table th:nth-child(2) { white-space: nowrap; color: var(--text-2); }
+.price-table td:nth-child(3), .price-table th:nth-child(3) { text-align: right; white-space: nowrap; font-weight: 700; }
+.price-table td:last-child, .price-table th:last-child { width: 1%; text-align: right; }
+.cat { display: block; font-size: 13px; color: var(--text-2); }
+.pick { min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line); background: transparent; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.pick:hover { border-color: var(--yellow); }
+.pick[aria-pressed="true"] { background: var(--yellow); border-color: var(--yellow); color: #121417; }
+.empty { padding: 28px; text-align: center; color: var(--text-2); }
+@media (max-width: 640px) {
+  .price-table thead { display: none; }
+  .price-table tr { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .price-table tbody tr:last-child { border-bottom: 0; }
+  .price-table td { padding: 0; border: 0; }
+  .price-table td:nth-child(1) { grid-column: 1 / -1; }
+  .price-table td:nth-child(2) { grid-column: 1; font-size: 14px; align-self: center; }
+  .price-table td:nth-child(3) { grid-column: 2; }
+  .price-table td:nth-child(4) { grid-column: 1 / -1; text-align: left; width: auto; margin-top: 6px; }
+}
+
+/* estimate panel */
+.estimate { position: sticky; bottom: 16px; z-index: 15; margin-top: 20px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; padding: 14px 16px 14px 20px; border-radius: 14px; background: var(--panel-2); border: 1px solid var(--yellow); box-shadow: 0 12px 30px rgba(0,0,0,.4); }
+.estimate[hidden] { display: none; }
+.estimate__sum { font: 700 22px/1.1 var(--font-display); }
+.estimate__meta { color: var(--text-2); font-size: 14px; }
+.estimate fieldset { border: 0; margin: 0; padding: 0; display: flex; gap: 6px; flex-wrap: wrap; }
+.estimate legend { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.estimate label { position: relative; }
+.estimate input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.estimate label span { display: block; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+.estimate input:checked + span { background: var(--text); color: var(--bg); border-color: var(--text); }
+.estimate input:focus-visible + span { outline: 3px solid var(--yellow); outline-offset: 2px; }
+.estimate .btn { margin-left: auto; }
+@media (max-width: 640px) {
+  .estimate { display: grid; grid-template-columns: 1fr auto; gap: 10px 12px; padding: 12px; bottom: 10px; }
+  .estimate[hidden] { display: none; }
+  .estimate__sum { font-size: 18px; }
+  .estimate fieldset { grid-column: 1 / -1; grid-row: 2; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .estimate label span { text-align: center; padding: 7px 4px; font-size: 13px; }
+  .estimate .btn { grid-column: 2; grid-row: 1; margin-left: 0; min-height: 44px; padding: 0 14px; }
+}
+
+/* steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: s; }
+@media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+.steps li { counter-increment: s; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.steps li::before { content: "0" counter(s); display: block; font: 800 28px/1 var(--font-display); color: var(--yellow); margin-bottom: 14px; }
+.steps h3 { margin: 0 0 6px; font-size: 18px; }
+.steps p { margin: 0; color: var(--text-2); font-size: 15px; }
+
+/* booking */
+.booking { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 900px) { .booking { grid-template-columns: 1fr; } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+.panel h3 { margin: 0 0 4px; font: 700 18px/1.3 var(--font-display); text-transform: uppercase; }
+.panel > p { margin: 0 0 16px; color: var(--text-2); font-size: 15px; }
+.days, .slots { display: grid; gap: 8px; }
+.days { grid-template-columns: repeat(7, minmax(0, 1fr)); margin-bottom: 20px; }
+.slots { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (max-width: 480px) { .days { grid-template-columns: repeat(4, minmax(0, 1fr)); } .slots { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.day, .slot { min-height: 48px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg-2); cursor: pointer; font-weight: 600; padding: 6px 4px; line-height: 1.2; }
+.day small { display: block; font-size: 12px; font-weight: 500; color: var(--text-2); }
+.day:hover, .slot:hover:not(:disabled) { border-color: var(--text-2); }
+.day[aria-pressed="true"], .slot[aria-pressed="true"] { background: var(--yellow); border-color: var(--yellow); color: #121417; }
+.day[aria-pressed="true"] small { color: #121417; }
+.slot:disabled { cursor: not-allowed; color: #6b7380; background: transparent; text-decoration: line-through; }
+.slots-legend { display: flex; gap: 16px; margin-top: 10px; font-size: 13px; color: var(--text-2); }
+.form { display: grid; gap: 14px; }
+.field { display: grid; gap: 6px; }
+.field label { font-weight: 600; font-size: 15px; }
+.field input, .field select { width: 100%; min-height: 48px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg-2); }
+.field input:focus, .field select:focus { outline: 2px solid var(--yellow); outline-offset: 0; border-color: var(--yellow); }
+.field input[aria-invalid="true"] { border-color: var(--bad); }
+.field__error { color: var(--bad); font-size: 14px; font-weight: 600; }
+.summary { background: var(--bg-2); border: 1px dashed var(--line); border-radius: 10px; padding: 12px 14px; font-size: 15px; color: var(--text-2); }
+.summary b { color: var(--text); }
+.form-error { color: var(--bad); font-weight: 600; margin: 0; }
+
+/* reviews */
+.reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 900px) { .reviews { grid-template-columns: 1fr; } }
+.review { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.review__head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+.review__stars { color: var(--yellow); letter-spacing: 2px; }
+.review p { margin: 0 0 12px; }
+.review footer { color: var(--text-2); font-size: 14px; }
+.sample { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-2); border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; }
+
+/* contacts */
+.contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+@media (max-width: 760px) { .contacts { grid-template-columns: 1fr; } }
+.contacts div { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+.contacts dt { font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-2); font-weight: 700; }
+.contacts dd { margin: 6px 0 0; font-size: 18px; font-weight: 600; }
+
+.footer { padding: 28px 0 40px; border-top: 1px solid var(--line); color: var(--text-2); font-size: 14px; }
+.demo-note { background: var(--panel); border-radius: 10px; padding: 10px 14px; margin: 14px 0 0; }
+
+/* confirmation */
+.modal { border: 1px solid var(--line); border-radius: 16px; padding: 0; width: min(520px, 100% - 32px); background: var(--panel); color: var(--text); }
+.modal::backdrop { background: rgba(0,0,0,.65); }
+.modal__body { padding: 24px; display: grid; gap: 14px; }
+.modal h2 { margin: 0; font: 700 20px/1.3 var(--font-display); text-transform: uppercase; }
+.modal pre { margin: 0; white-space: pre-wrap; background: var(--bg-2); border: 1px solid var(--line); border-radius: 10px; padding: 14px; font: 500 14px/1.5 var(--font-text); max-height: 46vh; overflow: auto; }
+.modal p { margin: 0; color: var(--text-2); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="gear" viewBox="0 0 48 48"><path fill="currentColor" d="M27.6 3l1.2 5.3a16 16 0 0 1 4.3 1.8l4.6-2.9 5.1 5.1-2.9 4.6a16 16 0 0 1 1.8 4.3l5.3 1.2v7.2l-5.3 1.2a16 16 0 0 1-1.8 4.3l2.9 4.6-5.1 5.1-4.6-2.9a16 16 0 0 1-4.3 1.8L27.6 45h-7.2l-1.2-5.3a16 16 0 0 1-4.3-1.8l-4.6 2.9-5.1-5.1 2.9-4.6a16 16 0 0 1-1.8-4.3L3 27.6v-7.2l5.3-1.2a16 16 0 0 1 1.8-4.3L7.2 10.3l5.1-5.1 4.6 2.9a16 16 0 0 1 4.3-1.8L20.4 3h7.2ZM24 16a8 8 0 1 0 0 16 8 8 0 0 0 0-16Z"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M4 12.5l5 5L20 6.5"/></symbol>
+    <symbol id="search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></g></symbol>
+  </defs>
+</svg>
+
+<header class="header">
+  <div class="wrap header__row">
+    <a class="logo" href="#top" aria-label="Автосервис «Привод», на главную"><svg aria-hidden="true"><use href="#gear"/></svg>ПРИВОД</a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#price">Цены</a>
+      <a href="#how">Как работаем</a>
+      <a href="#booking">Запись</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="header__phone" href="tel:+70000000000">+7 (000) 000-00-00</a>
+    <a class="btn btn--primary btn--sm" href="#booking">Записаться</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="tag"><i aria-hidden="true"></i>Сегодня есть свободные окна</p>
+        <h1>Ремонт <span>без сюрпризов</span> в чеке</h1>
+        <p class="hero__lead">Называем цену до начала работ и не меняем её без вашего согласия. Все цены — на сайте, записаться можно за минуту.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#booking">Записаться онлайн</a>
+          <a class="btn btn--ghost" href="#price">Посмотреть цены</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><b>6 мес.</b><span>гарантия на работы</span></div>
+          <div class="stat"><b>9–20</b><span>каждый день</span></div>
+          <div class="stat"><b>6 постов</b><span>берём в работу сразу</span></div>
+        </div>
+      </div>
+      <aside class="hero__card" aria-labelledby="why-title">
+        <h2 id="why-title">Почему к нам едут</h2>
+        <ul class="checklist">
+          <li><svg aria-hidden="true"><use href="#check"/></svg><div><b>Фото и видео поломки</b><span>Присылаем в WhatsApp до начала ремонта</span></div></li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg><div><b>Оригинал или аналог</b><span>Вы выбираете запчасти, мы показываем разницу в цене</span></div></li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg><div><b>Старые детали — вам</b><span>Отдаём всё, что сняли с машины</span></div></li>
+          <li><svg aria-hidden="true"><use href="#check"/></svg><div><b>Зона ожидания</b><span>Кофе, Wi-Fi и окно в ремзону</span></div></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="price" aria-labelledby="price-title">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="price-title">Цены на работы</h2>
+        <p class="section__note">Отметьте нужные работы — посчитаем примерную стоимость для вашей машины и запишем в один клик.</p>
+      </div>
+      <div class="price-tools">
+        <label class="search">
+          <span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Поиск по услугам</span>
+          <svg aria-hidden="true"><use href="#search"/></svg>
+          <input type="search" placeholder="Например, колодки или масло" data-search>
+        </label>
+        <div class="chips" role="group" aria-label="Категории" data-chips></div>
+      </div>
+      <table class="price-table">
+        <caption style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Прайс на работы для легкового автомобиля</caption>
+        <thead><tr><th scope="col">Работа</th><th scope="col">Время</th><th scope="col">Цена</th><th scope="col"><span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Выбор</span></th></tr></thead>
+        <tbody data-rows></tbody>
+      </table>
+      <p class="empty" data-empty hidden>Ничего не нашли — позвоните, подскажем: <a href="tel:+70000000000">+7 (000) 000-00-00</a></p>
+
+      <div class="estimate" data-estimate hidden aria-live="polite">
+        <div>
+          <div class="estimate__sum" data-est-sum></div>
+          <div class="estimate__meta" data-est-meta></div>
+        </div>
+        <fieldset data-class>
+          <legend>Класс автомобиля</legend>
+          <label><input type="radio" name="carclass" value="1" checked><span>Легковой</span></label>
+          <label><input type="radio" name="carclass" value="1.2"><span>Кроссовер</span></label>
+          <label><input type="radio" name="carclass" value="1.4"><span>Внедорожник</span></label>
+        </fieldset>
+        <a class="btn btn--primary" href="#booking">Записаться</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section__head"><h2 id="how-title">Как мы работаем</h2></div>
+      <ol class="steps">
+        <li><h3>Запись</h3><p>Выбираете удобное время на сайте или звоните. Без очередей.</p></li>
+        <li><h3>Диагностика</h3><p>Смотрим машину, присылаем фото и точную смету.</p></li>
+        <li><h3>Ремонт</h3><p>Начинаем только после вашего «да». Цена не растёт по ходу.</p></li>
+        <li><h3>Гарантия</h3><p>6 месяцев на работы. Если что-то не так — исправим бесплатно.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="booking" aria-labelledby="booking-title">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="booking-title">Онлайн-запись</h2>
+        <p class="section__note">Выберите день и время — мастер перезвонит в течение 15 минут и подтвердит запись.</p>
+      </div>
+      <div class="booking">
+        <div class="panel">
+          <h3>Когда удобно</h3>
+          <p>Зачёркнутое время уже занято.</p>
+          <div class="days" role="group" aria-label="День" data-days></div>
+          <div class="slots" role="group" aria-label="Время" data-slots></div>
+        </div>
+        <form class="panel form" data-form novalidate>
+          <div>
+            <h3>Ваши данные</h3>
+          </div>
+          <div class="summary" data-summary></div>
+          <div class="field">
+            <label for="b-car">Марка и модель</label>
+            <input id="b-car" name="car" placeholder="Например, Toyota Corolla 2012" required aria-describedby="b-car-err">
+            <span class="field__error" id="b-car-err" hidden>Напишите марку и модель машины</span>
+          </div>
+          <div class="field">
+            <label for="b-name">Имя</label>
+            <input id="b-name" name="name" autocomplete="name" required aria-describedby="b-name-err">
+            <span class="field__error" id="b-name-err" hidden>Как к вам обращаться?</span>
+          </div>
+          <div class="field">
+            <label for="b-phone">Телефон</label>
+            <input id="b-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" required aria-describedby="b-phone-err">
+            <span class="field__error" id="b-phone-err" hidden>Укажите телефон: на него перезвонит мастер</span>
+          </div>
+          <p class="form-error" data-slot-err hidden>Выберите день и время слева</p>
+          <button class="btn btn--primary" type="submit">Записаться</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" aria-labelledby="reviews-title">
+    <div class="wrap">
+      <div class="section__head">
+        <h2 id="reviews-title">Отзывы</h2>
+        <p class="section__note">Здесь будут настоящие отзывы ваших клиентов — например, из 2ГИС или Яндекс Карт.</p>
+      </div>
+      <div class="reviews">
+        <article class="review">
+          <div class="review__head"><span class="review__stars" aria-label="5 из 5">★★★★★</span><span class="sample">пример</span></div>
+          <p>Скинули видео, где течёт сальник, и сразу сказали цену. В итоге заплатил ровно столько, сколько обещали.</p>
+          <footer>Клиент, замена сальника</footer>
+        </article>
+        <article class="review">
+          <div class="review__head"><span class="review__stars" aria-label="5 из 5">★★★★★</span><span class="sample">пример</span></div>
+          <p>Записался на сайте вечером, утром приехал к назначенному времени — без очереди. Удобно.</p>
+          <footer>Клиент, плановое ТО</footer>
+        </article>
+        <article class="review">
+          <div class="review__head"><span class="review__stars" aria-label="5 из 5">★★★★★</span><span class="sample">пример</span></div>
+          <p>Предложили аналог вместо оригинала и честно объяснили разницу. Сэкономил почти половину.</p>
+          <footer>Клиент, ремонт подвески</footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacts" aria-labelledby="contacts-title">
+    <div class="wrap">
+      <div class="section__head"><h2 id="contacts-title">Контакты</h2></div>
+      <dl class="contacts">
+        <div><dt>Адрес</dt><dd>г. Уссурийск, ул. Примерная, 1</dd></div>
+        <div><dt>Телефон</dt><dd><a href="tel:+70000000000">+7 (000) 000-00-00</a></dd></div>
+        <div><dt>Режим работы</dt><dd>Ежедневно, 9:00–20:00</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span>© Автосервис «Привод»</span>
+    <p class="demo-note">Это демонстрационный сайт: автосервис, адрес, телефон и отзывы вымышлены. Такой сайт можно сделать для вашего СТО. <a href="../">Все примеры →</a></p>
+  </div>
+</footer>
+
+<dialog class="modal" data-modal aria-labelledby="modal-title">
+  <div class="modal__body">
+    <h2 id="modal-title">Заявка готова</h2>
+    <p>Вот что получит автосервис в WhatsApp:</p>
+    <pre data-modal-text></pre>
+    <p><strong>Это демо.</strong> На настоящем сайте заявка сразу откроется в мессенджере с номером сервиса — останется нажать «Отправить».</p>
+    <button class="btn btn--primary" type="button" data-modal-close>Понятно</button>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  const SERVICES = [
+    { id: "to1", cat: "ТО", name: "Замена масла и масляного фильтра", time: "30 мин", price: 600 },
+    { id: "to2", cat: "ТО", name: "Замена воздушного фильтра", time: "15 мин", price: 250 },
+    { id: "to3", cat: "ТО", name: "Замена салонного фильтра", time: "20 мин", price: 350 },
+    { id: "to4", cat: "ТО", name: "Плановое ТО (масло, фильтры, осмотр)", time: "1,5 ч", price: 2400 },
+    { id: "br1", cat: "Тормоза", name: "Замена передних колодок", time: "40 мин", price: 900 },
+    { id: "br2", cat: "Тормоза", name: "Замена задних колодок", time: "50 мин", price: 1000 },
+    { id: "br3", cat: "Тормоза", name: "Замена тормозных дисков (пара)", time: "1 ч", price: 1800 },
+    { id: "br4", cat: "Тормоза", name: "Замена тормозной жидкости", time: "40 мин", price: 1100 },
+    { id: "su1", cat: "Подвеска", name: "Диагностика подвески", time: "30 мин", price: 500 },
+    { id: "su2", cat: "Подвеска", name: "Замена амортизатора (1 шт)", time: "1 ч", price: 1500 },
+    { id: "su3", cat: "Подвеска", name: "Замена стойки стабилизатора", time: "30 мин", price: 600 },
+    { id: "su4", cat: "Подвеска", name: "Замена сайлентблоков рычага", time: "2 ч", price: 2800 },
+    { id: "en1", cat: "Двигатель", name: "Компьютерная диагностика", time: "30 мин", price: 800 },
+    { id: "en2", cat: "Двигатель", name: "Замена свечей зажигания", time: "40 мин", price: 800 },
+    { id: "en3", cat: "Двигатель", name: "Замена ремня ГРМ с роликами", time: "3 ч", price: 5500 },
+    { id: "en4", cat: "Двигатель", name: "Замена антифриза", time: "1 ч", price: 1400 },
+    { id: "ti1", cat: "Шиномонтаж", name: "Сезонная переобувка (4 колеса)", time: "40 мин", price: 2000 },
+    { id: "ti2", cat: "Шиномонтаж", name: "Балансировка (1 колесо)", time: "10 мин", price: 250 },
+    { id: "ti3", cat: "Шиномонтаж", name: "Ремонт прокола", time: "20 мин", price: 500 },
+    { id: "el1", cat: "Электрика", name: "Замена аккумулятора", time: "20 мин", price: 400 },
+    { id: "el2", cat: "Электрика", name: "Регулировка фар", time: "20 мин", price: 600 }
+  ];
+  const CATS = ["Все", ...new Set(SERVICES.map(s => s.cat))];
+  const byId = Object.fromEntries(SERVICES.map(s => [s.id, s]));
+  const rub = n => Math.round(n).toLocaleString("ru-RU") + " ₽";
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+  let cat = "Все", query = "";
+  const picked = new Set();
+
+  // ---- прайс ----
+  $("[data-chips]").innerHTML = CATS.map(c => `<button class="chip" type="button" data-cat="${c}" aria-pressed="${c === cat}">${c}</button>`).join("");
+  const norm = s => s.toLowerCase().replace(/ё/g, "е");
+
+  function renderRows() {
+    const q = norm(query.trim());
+    const rows = SERVICES.filter(s => (cat === "Все" || s.cat === cat) && (!q || norm(s.name + " " + s.cat).includes(q)));
+    $("[data-rows]").innerHTML = rows.map(s => `
+      <tr>
+        <td>${s.name}${cat === "Все" ? `<span class="cat">${s.cat}</span>` : ""}</td>
+        <td>${s.time}</td>
+        <td>от ${rub(s.price)}</td>
+        <td><button class="pick" type="button" data-pick="${s.id}" aria-pressed="${picked.has(s.id)}" aria-label="${picked.has(s.id) ? "Убрать из расчёта" : "Добавить в расчёт"}: ${s.name}">${picked.has(s.id) ? "Выбрано" : "В расчёт"}</button></td>
+      </tr>`).join("");
+    $("[data-empty]").hidden = rows.length > 0;
+  }
+
+  const factor = () => Number(document.querySelector('input[name="carclass"]:checked').value);
+  const classLabel = () => document.querySelector('input[name="carclass"]:checked').nextElementSibling.textContent;
+
+  function renderEstimate() {
+    const list = [...picked].map(id => byId[id]);
+    const sum = list.reduce((a, s) => a + s.price, 0) * factor();
+    $("[data-estimate]").hidden = list.length === 0;
+    $("[data-est-sum]").textContent = "≈ " + rub(sum);
+    const n = list.length;
+    $("[data-est-meta]").textContent = `${n} ${n === 1 ? "работа" : n < 5 ? "работы" : "работ"} · без учёта запчастей`;
+    renderSummary();
+  }
+
+  $("[data-chips]").addEventListener("click", e => {
+    const b = e.target.closest("[data-cat]"); if (!b) return;
+    cat = b.dataset.cat;
+    $$("[data-cat]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    renderRows();
+  });
+  $("[data-search]").addEventListener("input", e => { query = e.target.value; renderRows(); });
+  $("[data-rows]").addEventListener("click", e => {
+    const b = e.target.closest("[data-pick]"); if (!b) return;
+    const id = b.dataset.pick;
+    picked.has(id) ? picked.delete(id) : picked.add(id);
+    renderRows(); renderEstimate();
+    $(`[data-pick="${id}"]`)?.focus();
+  });
+  $("[data-class]").addEventListener("change", renderEstimate);
+
+  // ---- запись ----
+  const DAY_NAMES = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
+  const MONTHS = ["янв", "фев", "мар", "апр", "мая", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
+  const HOURS = Array.from({ length: 11 }, (_, i) => 9 + i); // 9:00–19:00
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const days = Array.from({ length: 7 }, (_, i) => { const d = new Date(today); d.setDate(d.getDate() + i); return d; });
+  let dayIdx = null, hour = null;
+
+  // псевдо-занятость: одинаковая для одного и того же дня
+  const busy = (d, h) => ((d.getDate() * 7 + h * 3) % 5 === 0) || ((d.getDate() + h) % 7 === 0);
+  const past = (d, h) => d.getTime() === today.getTime() && h <= new Date().getHours();
+
+  $("[data-days]").innerHTML = days.map((d, i) => `
+    <button class="day" type="button" data-day="${i}" aria-pressed="false" aria-label="${i === 0 ? "Сегодня" : i === 1 ? "Завтра" : DAY_NAMES[d.getDay()]}, ${d.getDate()} ${MONTHS[d.getMonth()]}">
+      <small>${i === 0 ? "сег" : i === 1 ? "завт" : DAY_NAMES[d.getDay()]}</small>${d.getDate()}
+    </button>`).join("");
+
+  function renderSlots() {
+    const d = dayIdx === null ? null : days[dayIdx];
+    $("[data-slots]").innerHTML = HOURS.map(h => {
+      const off = !d || busy(d, h) || past(d, h);
+      return `<button class="slot" type="button" data-hour="${h}" ${off ? "disabled" : ""} aria-pressed="${h === hour}">${h}:00</button>`;
+    }).join("");
+  }
+
+  function renderSummary() {
+    const parts = [];
+    if (dayIdx !== null && hour !== null) {
+      const d = days[dayIdx];
+      parts.push(`<b>${d.getDate()} ${MONTHS[d.getMonth()]}, ${hour}:00</b>`);
+    } else parts.push("Время не выбрано");
+    parts.push(picked.size ? `Работы: ${[...picked].map(id => byId[id].name.toLowerCase()).join(", ")}` : "Работы: диагностика, скажем на месте");
+    $("[data-summary]").innerHTML = parts.join("<br>");
+  }
+
+  $("[data-days]").addEventListener("click", e => {
+    const b = e.target.closest("[data-day]"); if (!b) return;
+    dayIdx = Number(b.dataset.day); hour = null;
+    $$("[data-day]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    renderSlots(); renderSummary();
+    $("[data-slot-err]").hidden = true;
+  });
+  $("[data-slots]").addEventListener("click", e => {
+    const b = e.target.closest("[data-hour]"); if (!b || b.disabled) return;
+    hour = Number(b.dataset.hour);
+    $$("[data-hour]").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    renderSummary();
+    $("[data-slot-err]").hidden = true;
+  });
+
+  // первый день, где ещё есть свободное время
+  dayIdx = days.findIndex(d => HOURS.some(h => !busy(d, h) && !past(d, h)));
+  $(`[data-day="${dayIdx}"]`)?.setAttribute("aria-pressed", "true");
+
+  function check(input, ok) {
+    input.setAttribute("aria-invalid", String(!ok));
+    $("#" + input.id + "-err").hidden = ok;
+    return ok;
+  }
+  $("[data-form]").addEventListener("submit", e => {
+    e.preventDefault();
+    const f = e.target.elements;
+    const okSlot = dayIdx !== null && hour !== null;
+    $("[data-slot-err]").hidden = okSlot;
+    const ok = [
+      check(f.car, f.car.value.trim().length > 1),
+      check(f.name, f.name.value.trim().length > 1),
+      check(f.phone, f.phone.value.replace(/\D/g, "").length >= 10)
+    ];
+    if (ok.includes(false)) { e.target.querySelector('[aria-invalid="true"]').focus(); return; }
+    if (!okSlot) { $("[data-slots] .slot:not(:disabled)")?.focus(); return; }
+
+    const d = days[dayIdx];
+    const list = [...picked].map(id => byId[id]);
+    // блоки сообщения разделяются пустой строкой
+    const blocks = [
+      ["Запись с сайта"],
+      [`Когда: ${d.getDate()} ${MONTHS[d.getMonth()]}, ${hour}:00`, `Машина: ${f.car.value.trim()} (${classLabel().toLowerCase()})`],
+      list.length
+        ? ["Работы:", ...list.map(s => `• ${s.name}`), `Примерно: ${rub(list.reduce((a, s) => a + s.price, 0) * factor())} без запчастей`]
+        : ["Работы: нужна диагностика"],
+      [`Имя: ${f.name.value.trim()}`, `Телефон: ${f.phone.value.trim()}`]
+    ];
+    const text = blocks.map(b => b.join("\n")).join("\n\n");
+    $("[data-modal-text]").textContent = text;
+    $("[data-modal]").showModal();
+  });
+  $("[data-modal-close]").addEventListener("click", () => $("[data-modal]").close());
+
+  renderRows(); renderEstimate(); renderSlots(); renderSummary();
+})();
+</script>
+</body>
+</html>
