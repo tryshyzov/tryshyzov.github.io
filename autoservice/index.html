@@ -48,7 +48,7 @@ svg { display: block; }
 .nav a:hover { color: var(--text); }
 .header__phone { text-decoration: none; font-weight: 700; white-space: nowrap; }
 @media (max-width: 900px) { .nav { display: none; } .header__phone { margin-left: auto; } }
-@media (max-width: 420px) { .header__phone { display: none; } }
+@media (max-width: 600px) { .header__phone { display: none; } .header .btn { margin-left: auto; } }
 
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 22px; border-radius: var(--radius); border: 2px solid transparent; font-weight: 700; text-decoration: none; cursor: pointer; }
 .btn--primary { background: var(--yellow); color: #121417; }
@@ -70,12 +70,13 @@ svg { display: block; }
 .hero__grid { position: relative; display: grid; grid-template-columns: 1.2fr .8fr; gap: 48px; align-items: center; }
 @media (max-width: 900px) { .hero { padding: 48px 0; } .hero__grid { grid-template-columns: 1fr; } }
 .hero__grid > * { min-width: 0; }
-@media (max-width: 380px) {
+@media (max-width: 440px) {
   .hero h1 { font-size: 27px; }
-  .stats { gap: 8px; }
-  .stat { padding-left: 10px; }
-  .stat b { font-size: 16px; white-space: normal; }
-  .stat span { font-size: 13px; }
+  /* .hero повышает приоритет: основные правила .stat* объявлены ниже */
+  .hero .stats { gap: 8px; }
+  .hero .stat { padding-left: 10px; }
+  .hero .stat b { font-size: 17px; white-space: normal; }
+  .hero .stat span { font-size: 13px; }
 }
 .tag { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--text-2); margin: 0 0 20px; }
 .tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
