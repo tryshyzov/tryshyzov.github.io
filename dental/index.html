@@ -5,239 +5,275 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- демо с вымышленной клиникой: не показывать в поиске -->
 <meta name="robots" content="noindex">
-<title>Стоматология «Эмаль» — лечение без боли, цены и онлайн-запись</title>
-<meta name="description" content="Лечение, гигиена, имплантация и брекеты. Цены на сайте, запись к врачу онлайн.">
+<title>Стоматология «Эмаль», Уссурийск — цены, врачи, запись</title>
+<meta name="description" content="Лечение, гигиена, хирургия, имплантация, детский приём. Цены на сайте, запись к врачу онлайн.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://images.unsplash.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&family=Source+Sans+3:wght@400;600;700&family=Bad+Script&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f4f8f9;
+  --bg: #f3f4f2;
   --card: #ffffff;
-  --mint: #dff3ee;
-  --mint-2: #c4eae1;
-  --ink: #0f2a3a;
-  --ink-2: #4b6573;
-  --line: #dbe6ea;
-  --accent: #0b7f74;
-  --accent-dark: #086a61;
-  --bad: #c0362c;
-  --radius: 20px;
-  --shadow: 0 1px 2px rgba(15,42,58,.05), 0 10px 30px rgba(15,42,58,.07);
-  --font-display: "Nunito", system-ui, sans-serif;
-  --font-text: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --ink: #142236;
+  --ink-2: #5a6676;
+  --line: #dde1e5;
+  --green: #0c6b5d;
+  --green-2: #e3f0ec;
+  --bad: #b3261e;
+  --note: #fff6c8;
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-text: "Source Sans 3", "Segoe UI", sans-serif;
+  --font-hand: "Bad Script", cursive;
 }
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
-body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.6 var(--font-text); -webkit-font-smoothing: antialiased; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.55 var(--font-text); -webkit-font-smoothing: antialiased; font-variant-numeric: tabular-nums; }
 a { color: inherit; }
 button, input { font: inherit; color: inherit; }
-svg { display: block; }
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
-.wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+img, svg { display: block; }
+:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.wrap { width: min(1200px, 100% - 32px); margin-inline: auto; }
 
-.header { position: sticky; top: 0; z-index: 20; background: rgba(244,248,249,.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.header__row { display: flex; align-items: center; gap: 24px; min-height: 68px; }
-.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 800 22px/1 var(--font-display); }
-.logo svg { width: 34px; height: 34px; color: var(--accent); }
-.nav { display: flex; gap: 22px; margin-left: auto; }
-.nav a { text-decoration: none; color: var(--ink-2); font-weight: 600; font-size: 15px; padding: 8px 0; }
-.nav a:hover { color: var(--accent); }
-.header__phone { font-weight: 700; text-decoration: none; white-space: nowrap; }
-@media (max-width: 900px) { .nav { display: none; } .header__phone { margin-left: auto; } }
-@media (max-width: 440px) { .header__phone { display: none; } .header .btn { margin-left: auto; } }
+/* шапка: строгая, разделы — сегментами по центру */
+.header { position: sticky; top: 0; z-index: 20; background: var(--card); border-bottom: 1px solid var(--line); }
+.header__row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px; min-height: 64px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 600 22px/1 var(--font-display); }
+.logo i { width: 28px; height: 28px; border-radius: 6px; background: var(--green); display: grid; place-items: center; color: #fff; font: 600 15px/1 var(--font-display); font-style: normal; }
+.seg-nav { justify-self: center; display: flex; padding: 3px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); }
+.seg-nav a { padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 15px; color: var(--ink-2); }
+.seg-nav a:hover { background: var(--card); color: var(--ink); }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border-radius: 6px; border: 1px solid transparent; font-weight: 700; text-decoration: none; cursor: pointer; }
+.btn--green { background: var(--green); color: #fff; }
+.btn--green:hover { background: #095449; }
+.btn--line { border-color: var(--line); background: var(--card); }
+.btn--line:hover { border-color: var(--ink-2); }
+@media (max-width: 860px) { .seg-nav { display: none; } .header__row { grid-template-columns: auto auto; justify-content: space-between; } }
 
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border-radius: 14px; border: 2px solid transparent; font-weight: 700; text-decoration: none; cursor: pointer; }
-.btn--primary { background: var(--accent); color: #fff; }
-.btn--primary:hover { background: var(--accent-dark); }
-.btn--ghost { border-color: var(--line); background: var(--card); }
-.btn--ghost:hover { border-color: var(--accent); }
-.btn--sm { min-height: 42px; padding: 0 18px; }
-.btn:disabled { opacity: .45; cursor: not-allowed; }
+/* бенто: карточки разного размера */
+.bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); grid-auto-rows: minmax(140px, auto); gap: 12px; padding: 24px 0 56px; }
+.tile { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px; min-width: 0; position: relative; overflow: hidden; }
+.tile h2 { margin: 0; font: 600 20px/1.2 var(--font-display); }
+.t-main { grid-column: span 7; grid-row: span 2; display: flex; flex-direction: column; padding: 30px; }
+.t-main h1 { margin: 0 0 12px; font: 600 clamp(32px, 4vw, 48px)/1.08 var(--font-display); letter-spacing: -.01em; max-width: 13em; }
+.t-main p { margin: 0 0 22px; color: var(--ink-2); max-width: 30em; }
+.t-main .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.t-main figure { margin: auto -30px -30px; padding-top: 26px; }
+.t-main img { width: 100%; height: 220px; object-fit: cover; }
+.t-free { grid-column: span 5; background: var(--green); color: #fff; border-color: var(--green); }
+.t-free b { display: block; font: 600 64px/1 var(--font-display); margin: 6px 0 8px; }
+.t-free p { margin: 0; color: #cfe6df; }
+.t-next { grid-column: span 3; }
+.t-next small, .t-hours small, .t-prices small, .t-docs small { display: block; color: var(--ink-2); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; margin-bottom: 8px; }
+.t-next b { display: block; font: 600 28px/1.1 var(--font-display); }
+.t-next span { color: var(--ink-2); }
+.t-next a { display: inline-block; margin-top: 12px; font-weight: 700; color: var(--green); }
+.t-hours { grid-column: span 2; }
+.t-hours dl { margin: 0; display: grid; gap: 2px; font-size: 15px; }
+.t-hours dt { font-weight: 700; }
+.t-hours dd { margin: 0 0 4px; color: var(--ink-2); }
+.t-prices { grid-column: span 5; }
+.t-prices ul { list-style: none; margin: 0; padding: 0; }
+.t-prices li { display: flex; justify-content: space-between; gap: 12px; padding: 6px 0; border-bottom: 1px solid var(--line); }
+.t-prices li:last-child { border: 0; }
+.t-prices a { display: inline-block; margin-top: 8px; font-weight: 700; color: var(--green); }
+.t-docs { grid-column: span 7; display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; }
+.t-docs .avatars { display: flex; }
+.t-docs .avatars i { width: 50px; height: 50px; border-radius: 50%; border: 3px solid var(--card); margin-left: -10px; display: grid; place-items: center; background: var(--green-2); color: var(--green); font: 600 16px/1 var(--font-display); font-style: normal; }
+.t-docs .avatars i:first-child { margin-left: 0; }
+.t-docs p { margin: 0; color: var(--ink-2); flex: 1 1 260px; }
+@media (max-width: 960px) {
+  .t-main { grid-column: span 12; grid-row: auto; }
+  .t-free, .t-prices, .t-docs { grid-column: span 12; }
+  .t-next { grid-column: span 7; } .t-hours { grid-column: span 5; }
+}
+@media (max-width: 520px) {
+  .bento { gap: 10px; padding-top: 14px; }
+  .t-main { padding: 22px; } .t-main figure { margin: auto -22px -22px; } .t-main img { height: 170px; }
+  .t-next, .t-hours { grid-column: span 12; }
+  .t-free b { font-size: 52px; }
+}
 
-/* hero */
-.hero { padding: 64px 0 72px; }
-.hero__grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: center; }
-.hero__grid > * { min-width: 0; }
-@media (max-width: 900px) { .hero { padding: 36px 0 56px; } .hero__grid { grid-template-columns: 1fr; gap: 32px; } }
-.badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; background: var(--mint); color: var(--accent-dark); font-weight: 700; font-size: 14px; margin: 0 0 18px; }
-.hero h1 { font: 800 clamp(36px, 5.6vw, 62px)/1.05 var(--font-display); margin: 0 0 20px; letter-spacing: -.02em; text-wrap: balance; }
-.hero h1 span { color: var(--accent); }
-.hero__lead { font-size: 18px; color: var(--ink-2); max-width: 32em; margin: 0 0 28px; }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; }
-.trust { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 36px; }
-.trust div { background: var(--card); border-radius: 16px; padding: 14px 16px; box-shadow: var(--shadow); }
-.trust b { display: block; font: 800 22px/1.1 var(--font-display); color: var(--accent); }
-.trust span { font-size: 14px; color: var(--ink-2); }
-@media (max-width: 420px) { .trust b { font-size: 18px; } .trust span { font-size: 13px; } .trust div { padding: 12px; } }
-.hero__art { position: relative; aspect-ratio: 1; max-width: 460px; width: 100%; justify-self: center; }
-.hero__circle { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, var(--mint) 55%, var(--mint-2)); }
-.hero__circle svg { position: absolute; inset: 18%; width: 64%; height: 64%; color: #fff; filter: drop-shadow(0 18px 30px rgba(11,127,116,.25)); }
-.hero__note { position: absolute; left: -2%; bottom: 10%; background: var(--card); border-radius: 18px; padding: 14px 18px; box-shadow: var(--shadow); max-width: 230px; }
-.hero__note b { display: block; font: 800 18px/1.25 var(--font-display); }
-.hero__note span { font-size: 14px; color: var(--ink-2); }
-@media (max-width: 900px) { .hero__art { max-width: 320px; } .hero__note { left: 0; } }
+.sec { padding: 64px 0; border-top: 1px solid var(--line); }
+.sec--white { background: var(--card); }
+.sec__head { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 40px; align-items: end; margin-bottom: 26px; }
+@media (max-width: 760px) { .sec__head { grid-template-columns: 1fr; } }
+.sec h2 { margin: 0; font: 600 clamp(28px, 3.4vw, 38px)/1.15 var(--font-display); }
+.sec__head p { margin: 0; color: var(--ink-2); }
 
-.section { padding: 80px 0; }
-.section--white { background: var(--card); border-block: 1px solid var(--line); }
-.section__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 30px; }
-.section h2 { font: 800 clamp(28px, 4vw, 42px)/1.1 var(--font-display); margin: 0; letter-spacing: -.01em; }
-.section__note { margin: 0; color: var(--ink-2); max-width: 32em; }
-
-/* цены: нативные раскрывающиеся разделы */
-.prices { display: grid; gap: 12px; }
-.prices details { background: var(--bg); border: 1px solid var(--line); border-radius: 18px; }
-.prices summary { list-style: none; display: flex; align-items: center; gap: 14px; padding: 18px 22px; cursor: pointer; font: 800 20px/1.2 var(--font-display); }
+/* цены — раскрывающиеся разделы */
+.prices details { border-top: 1px solid var(--line); }
+.prices details:last-child { border-bottom: 1px solid var(--line); }
+.prices summary { list-style: none; display: grid; grid-template-columns: 1fr auto 20px; gap: 16px; align-items: center; padding: 16px 0; cursor: pointer; font: 600 20px/1.2 var(--font-display); }
 .prices summary::-webkit-details-marker { display: none; }
-.prices summary small { margin-left: auto; font: 600 15px/1 var(--font-text); color: var(--ink-2); white-space: nowrap; }
-.prices summary::after { content: ""; width: 12px; height: 12px; border-right: 2.5px solid var(--accent); border-bottom: 2.5px solid var(--accent); rotate: 45deg; translate: 0 -3px; flex: none; transition: rotate .2s; }
-.prices details[open] summary::after { rotate: 225deg; translate: 0 3px; }
-.prices ul { list-style: none; margin: 0; padding: 0 22px 12px; }
-.prices li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-top: 1px solid var(--line); }
-.prices li b { white-space: nowrap; }
-@media (max-width: 520px) { .prices summary { font-size: 18px; padding: 16px; } .prices summary small { display: none; } .prices summary::after { margin-left: auto; } .prices ul { padding: 0 16px 8px; } }
+.prices summary small { font: 600 15px/1 var(--font-text); color: var(--ink-2); white-space: nowrap; }
+.prices summary::after { content: "+"; font: 400 26px/1 var(--font-text); color: var(--green); text-align: center; }
+.prices details[open] summary::after { content: "−"; }
+.prices table { width: 100%; border-collapse: collapse; margin: 0 0 14px; font-size: 16px; }
+.prices td { padding: 8px 0; border-top: 1px dashed var(--line); }
+.prices td:last-child { text-align: right; font-weight: 700; white-space: nowrap; padding-left: 16px; }
+@media (max-width: 520px) { .prices summary small { display: none; } .prices summary { grid-template-columns: 1fr 20px; } }
 
-/* врачи */
-.chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-.chip { min-height: 42px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font-weight: 700; cursor: pointer; }
-.chip:hover { border-color: var(--accent); }
+/* врачи + памятка от руки */
+.docs-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 28px; align-items: start; }
+@media (max-width: 900px) { .docs-wrap { grid-template-columns: 1fr; } }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.chip { min-height: 38px; padding: 0 14px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); font-weight: 600; cursor: pointer; }
 .chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: #fff; }
-.doctors { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-@media (max-width: 960px) { .doctors { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .doctors { gap: 10px; } }
-.doctor { background: var(--card); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); display: grid; gap: 8px; align-content: start; }
-.avatar { width: 72px; height: 72px; border-radius: 22px; display: grid; place-items: center; font: 800 28px/1 var(--font-display); color: var(--accent-dark); background: var(--mint); }
-.doctor h3 { margin: 6px 0 0; font: 800 18px/1.25 var(--font-display); }
-.doctor p { margin: 0; color: var(--ink-2); font-size: 15px; }
-.doctor small { color: var(--accent); font-weight: 700; font-size: 14px; }
-@media (max-width: 520px) { .doctor { padding: 16px; } .avatar { width: 56px; height: 56px; font-size: 22px; border-radius: 18px; } .doctor h3 { font-size: 16px; } .doctor p { font-size: 14px; } }
+.doctors { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.doctor { display: grid; grid-template-columns: 52px 1fr auto; gap: 16px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.doctor i { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; background: var(--green-2); color: var(--green); font: 600 18px/1 var(--font-display); font-style: normal; }
+.doctor b { display: block; font: 600 19px/1.2 var(--font-display); }
+.doctor span { color: var(--ink-2); font-size: 15px; }
+.doctor a { font-weight: 700; color: var(--green); white-space: nowrap; }
+@media (max-width: 520px) { .doctor { grid-template-columns: 44px 1fr; } .doctor i { width: 44px; height: 44px; } .doctor a { grid-column: 2; } }
+.memo { background: var(--note); padding: 24px 24px 20px; transform: rotate(1.6deg); box-shadow: 0 10px 24px rgba(20,34,54,.12); }
+.memo h3 { margin: 0 0 10px; font: 600 18px/1.2 var(--font-display); }
+.memo ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.memo li { display: grid; grid-template-columns: 26px 1fr; gap: 6px; font: 400 19px/1.3 var(--font-hand); color: #2b2a24; }
+.memo li svg { width: 22px; height: 22px; color: #c0362c; }
+.memo p { margin: 12px 0 0; font-size: 14px; color: #5f5a45; }
 
 /* запись */
-.booking { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; }
+.booking { display: grid; grid-template-columns: 1.15fr .85fr; gap: 16px; }
 @media (max-width: 900px) { .booking { grid-template-columns: 1fr; } }
-.panel { background: var(--card); border-radius: 24px; box-shadow: var(--shadow); padding: clamp(20px, 3vw, 30px); }
-.panel h3 { margin: 0 0 14px; font: 800 20px/1.2 var(--font-display); }
-.label { font-weight: 700; font-size: 15px; margin: 18px 0 8px; }
-.label:first-of-type { margin-top: 0; }
-.pick-doc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 22px; min-width: 0; }
+.label { margin: 16px 0 8px; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; color: var(--ink-2); }
+.label:first-child { margin-top: 0; }
+.pick-doc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
 @media (max-width: 480px) { .pick-doc { grid-template-columns: 1fr; } }
-.opt { text-align: left; display: grid; grid-template-columns: 40px 1fr; column-gap: 10px; align-items: center; padding: 10px 12px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--bg); cursor: pointer; }
-.opt .avatar { width: 40px; height: 40px; font-size: 16px; border-radius: 12px; grid-row: span 2; }
-.opt b { font-weight: 700; font-size: 15px; }
-.opt span { font-size: 13px; color: var(--ink-2); }
-.opt:hover { border-color: var(--ink-2); }
-.opt[aria-pressed="true"] { border-color: var(--accent); background: #effaf7; }
-.days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
-.times { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.opt { text-align: left; padding: 10px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); cursor: pointer; }
+.opt b { display: block; font-weight: 700; font-size: 15px; }
+.opt span { font-size: 14px; color: var(--ink-2); }
+.opt[aria-pressed="true"] { border-color: var(--green); background: var(--green-2); }
+.days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.times { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; }
 @media (max-width: 480px) { .times { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-.day, .time { min-height: 46px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--bg); cursor: pointer; font-weight: 700; padding: 4px 0; line-height: 1.2; }
-.day small { display: block; font-size: 11px; font-weight: 600; color: var(--ink-2); }
-.day:hover, .time:hover { border-color: var(--ink-2); }
-.day[aria-pressed="true"], .time[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
-.day[aria-pressed="true"] small { color: #d9f5ef; }
-.hint { margin: 0; color: var(--ink-2); font-size: 15px; }
-.form { display: grid; gap: 14px; }
-.field { display: grid; gap: 6px; }
-.field label { font-weight: 700; font-size: 15px; }
-.field input { min-height: 48px; padding: 0 14px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--bg); }
-.field input:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
-.field input[aria-invalid="true"] { border-color: var(--bad); }
-.err { color: var(--bad); font-size: 14px; font-weight: 700; margin: 0; }
-.summary { background: var(--mint); border-radius: 14px; padding: 12px 14px; font-size: 15px; }
+.day, .time { min-height: 44px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); cursor: pointer; font-weight: 600; padding: 4px 0; line-height: 1.2; }
+.day small { display: block; font-size: 11px; color: var(--ink-2); font-weight: 400; }
+.day[aria-pressed="true"], .time[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+.day[aria-pressed="true"] small { color: #cfe6df; }
+.hint { margin: 0; color: var(--ink-2); }
+.form { display: grid; gap: 12px; }
+.form h3 { margin: 0; font: 600 20px/1.2 var(--font-display); }
+.summary { background: var(--bg); border-radius: 6px; padding: 10px 12px; font-size: 15px; }
 .summary b { display: block; }
-.consent { font-size: 13px; color: var(--ink-2); margin: 0; }
+.field { display: grid; gap: 4px; }
+.field label { font-weight: 700; font-size: 15px; }
+.field input { min-height: 46px; padding: 0 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); }
+.field input[aria-invalid="true"] { border-color: var(--bad); }
+.err { margin: 0; color: var(--bad); font-weight: 700; font-size: 14px; }
+.consent { margin: 0; font-size: 13px; color: var(--ink-2); }
 
-.contacts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-@media (max-width: 760px) { .contacts { grid-template-columns: 1fr; } }
-.contacts div { background: var(--card); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
-.contacts dt { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
-.contacts dd { margin: 6px 0 0; font-size: 18px; font-weight: 700; }
-.warning { margin: 28px 0 0; padding: 14px 18px; border-radius: 14px; background: var(--card); border: 1px solid var(--line); font: 800 clamp(14px, 1.8vw, 18px)/1.3 var(--font-display); text-transform: uppercase; color: var(--ink-2); text-align: center; letter-spacing: .02em; }
+.warning { margin: 0; padding: 18px 16px; border-top: 1px solid var(--line); text-align: center; font: 700 clamp(13px, 1.6vw, 16px)/1.3 var(--font-text); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
+.footer { padding: 24px 0 40px; border-top: 1px solid var(--line); color: var(--ink-2); font-size: 15px; }
+.demo-note { margin: 6px 0 0; }
 
-.footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--ink-2); font-size: 14px; }
-.demo-note { background: var(--card); border-radius: 12px; padding: 10px 14px; margin: 14px 0 0; }
-
-.modal { border: 0; border-radius: 22px; padding: 0; width: min(520px, 100% - 32px); background: var(--bg); color: var(--ink); }
-.modal::backdrop { background: rgba(15,42,58,.5); }
-.modal__body { padding: 26px; display: grid; gap: 14px; }
-.modal h2 { margin: 0; font: 800 26px/1.15 var(--font-display); }
-.modal pre { margin: 0; white-space: pre-wrap; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; font: 600 14px/1.5 var(--font-text); max-height: 46vh; overflow: auto; }
+.modal { border: 1px solid var(--line); border-radius: 10px; padding: 0; width: min(520px, 100% - 32px); background: var(--card); color: var(--ink); }
+.modal::backdrop { background: rgba(20,34,54,.5); }
+.modal__body { padding: 24px; display: grid; gap: 12px; }
+.modal h2 { margin: 0; font: 600 24px/1.2 var(--font-display); }
+.modal pre { margin: 0; white-space: pre-wrap; background: var(--bg); border-radius: 6px; padding: 14px; font: 400 15px/1.5 var(--font-text); max-height: 46vh; overflow: auto; }
 .modal p { margin: 0; color: var(--ink-2); }
 </style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <symbol id="tooth" viewBox="0 0 64 64"><path fill="currentColor" d="M32 10c-4-3-9-5-14-4C9 7 5 15 7 24c1 6 4 9 5 15 1 7 2 17 7 18 5 1 6-8 8-14 1-3 2-5 5-5s4 2 5 5c2 6 3 15 8 14 5-1 6-11 7-18 1-6 4-9 5-15 2-9-2-17-11-18-5-1-10 1-14 4Z"/></symbol>
-  </defs>
+  <symbol id="tick" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M3 13c3 2 5 5 6 7 3-7 7-12 12-16"/></symbol>
 </svg>
 
 <header class="header">
   <div class="wrap header__row">
-    <a class="logo" href="#top" aria-label="Стоматология «Эмаль», на главную"><svg aria-hidden="true"><use href="#tooth"/></svg>Эмаль</a>
-    <nav class="nav" aria-label="Разделы">
-      <a href="#prices">Услуги и цены</a>
+    <a class="logo" href="#top" aria-label="Стоматология «Эмаль», на главную"><i aria-hidden="true">Э</i>Эмаль</a>
+    <nav class="seg-nav" aria-label="Разделы">
+      <a href="#prices">Цены</a>
       <a href="#doctors">Врачи</a>
       <a href="#booking">Запись</a>
-      <a href="#contacts">Контакты</a>
+      <a href="#where">Как добраться</a>
     </nav>
-    <a class="header__phone" href="tel:+70000000000">+7 (000) 000-00-00</a>
-    <a class="btn btn--primary btn--sm" href="#booking">Записаться</a>
+    <a class="btn btn--green" href="#booking">Записаться</a>
   </div>
 </header>
 
 <main id="top">
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div>
-        <p class="badge">Первичная консультация — бесплатно</p>
-        <h1>Улыбка, за которую <span>не стыдно</span></h1>
-        <p class="hero__lead">Лечим зубы под современной анестезией, называем цену до начала лечения и показываем снимки на экране. Записаться к врачу можно прямо на сайте.</p>
-        <div class="actions">
-          <a class="btn btn--primary" href="#booking">Записаться онлайн</a>
-          <a class="btn btn--ghost" href="#prices">Цены на лечение</a>
-        </div>
-        <div class="trust">
-          <div><b>12 лет</b><span>работаем в городе</span></div>
-          <div><b>План</b><span>лечения с ценой заранее</span></div>
-          <div><b>3D</b><span>снимок прямо в клинике</span></div>
-        </div>
+  <div class="wrap bento">
+    <section class="tile t-main" aria-labelledby="hero-title">
+      <h1 id="hero-title">Стоматология на Примерной, 1</h1>
+      <p>Сначала осмотр и снимок. Потом план лечения с ценами на бумаге, и вы спокойно решаете дома. В тот же день ничего не начинаем, если сами не попросите.</p>
+      <div class="actions">
+        <a class="btn btn--green" href="#booking">Записаться</a>
+        <a class="btn btn--line" href="#prices">Все цены</a>
       </div>
-      <div class="hero__art" aria-hidden="true">
-        <div class="hero__circle"><svg><use href="#tooth"/></svg></div>
-        <div class="hero__note"><b>Без боли</b><span>Анестезия, которую почти не чувствуешь</span></div>
-      </div>
+      <figure><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1400&q=72&auto=format&fit=crop" alt="Кабинет с креслом и оборудованием"></figure>
+    </section>
+    <div class="tile t-free">
+      <h2>Первичная консультация</h2>
+      <b>0 ₽</b>
+      <p>Осмотр, прицельный снимок и план лечения на руки. Без обязательств.</p>
     </div>
-  </section>
+    <div class="tile t-next" aria-live="polite">
+      <small>Ближайшая запись</small>
+      <b data-next-time>—</b>
+      <span data-next-doc></span>
+      <a href="#booking">Другое время</a>
+    </div>
+    <div class="tile t-hours">
+      <small>Часы</small>
+      <dl><dt>Пн–пт</dt><dd>8:00–20:00</dd><dt>Сб</dt><dd>9:00–15:00</dd><dt>Вс</dt><dd>выходной</dd></dl>
+    </div>
+    <div class="tile t-prices">
+      <small>Цены, от</small>
+      <ul>
+        <li><span>Лечение кариеса</span><b>3 900 ₽</b></li>
+        <li><span>Чистка AirFlow + ультразвук</span><b>4 200 ₽</b></li>
+        <li><span>Имплант под ключ</span><b>52 000 ₽</b></li>
+      </ul>
+      <a href="#prices">Полный прайс</a>
+    </div>
+    <div class="tile t-docs">
+      <div><small>Врачи</small><div class="avatars" aria-hidden="true"><i>ИП</i><i>АС</i><i>МО</i><i>ОВ</i><i>ДА</i></div></div>
+      <p>Пятеро врачей, детей принимаем с 3 лет. Главврач Игорь Павлович сам читает отзывы. Если что-то не так, пишите прямо ему.</p>
+    </div>
+  </div>
 
-  <section class="section section--white" id="prices" aria-labelledby="prices-title">
+  <section class="sec sec--white" id="prices" aria-labelledby="prices-title">
     <div class="wrap">
-      <div class="section__head">
-        <h2 id="prices-title">Услуги и цены</h2>
-        <p class="section__note">Точную стоимость врач назовёт после осмотра и согласует с вами до начала лечения.</p>
+      <div class="sec__head">
+        <h2 id="prices-title">Цены</h2>
+        <p>Итог зависит от того, что увидим на снимке. Цену по плану лечения фиксируем и не меняем по ходу.</p>
       </div>
       <div class="prices" data-prices></div>
     </div>
   </section>
 
-  <section class="section" id="doctors" aria-labelledby="doctors-title">
+  <section class="sec" id="doctors" aria-labelledby="doctors-title">
     <div class="wrap">
-      <div class="section__head"><h2 id="doctors-title">Врачи</h2></div>
-      <div class="chips" role="group" aria-label="Направление" data-chips></div>
-      <div class="doctors" data-doctors></div>
+      <div class="sec__head"><h2 id="doctors-title">Врачи</h2><p>У каждого своя смена, расписание видно в записи ниже.</p></div>
+      <div class="docs-wrap">
+        <div>
+          <div class="chips" role="group" aria-label="Направление" data-chips></div>
+          <ul class="doctors" data-doctors></ul>
+        </div>
+        <aside class="memo" aria-labelledby="memo-title">
+          <h3 id="memo-title">Памятка после пломбы</h3>
+          <ul>
+            <li><svg aria-hidden="true"><use href="#tick"/></svg>не есть 2 часа</li>
+            <li><svg aria-hidden="true"><use href="#tick"/></svg>сутки без кофе и свёклы</li>
+            <li><svg aria-hidden="true"><use href="#tick"/></svg>болит дольше 3 дней — звоните</li>
+          </ul>
+          <p>Такую выдаём на руки после приёма.</p>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <section class="section section--white" id="booking" aria-labelledby="booking-title">
+  <section class="sec sec--white" id="booking" aria-labelledby="booking-title">
     <div class="wrap">
-      <div class="section__head">
-        <h2 id="booking-title">Запись к врачу</h2>
-        <p class="section__note">Выберите врача и время — администратор перезвонит и подтвердит запись.</p>
-      </div>
+      <div class="sec__head"><h2 id="booking-title">Запись к врачу</h2><p>Администратор перезвонит в течение получаса и подтвердит.</p></div>
       <div class="booking">
-        <div class="panel">
+        <div class="panel" data-picker>
           <p class="label">Врач</p>
           <div class="pick-doc" role="group" aria-label="Врач" data-pick-doc></div>
           <p class="label">День</p>
@@ -256,83 +292,81 @@ svg { display: block; }
           <div class="field">
             <label for="d-phone">Телефон</label>
             <input id="d-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7" aria-describedby="d-phone-err">
-            <p class="err" id="d-phone-err" hidden>Укажите телефон, чтобы мы подтвердили запись</p>
+            <p class="err" id="d-phone-err" hidden>Нужен телефон, чтобы подтвердить запись</p>
           </div>
           <p class="err" data-slot-err hidden>Выберите врача, день и время</p>
-          <button class="btn btn--primary" type="submit">Записаться</button>
+          <button class="btn btn--green" type="submit">Записаться</button>
           <p class="consent">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
         </form>
       </div>
     </div>
   </section>
 
-  <section class="section" id="contacts" aria-labelledby="contacts-title">
-    <div class="wrap">
-      <div class="section__head"><h2 id="contacts-title">Контакты</h2></div>
-      <dl class="contacts">
-        <div><dt>Адрес</dt><dd>г. Уссурийск, ул. Примерная, 1</dd></div>
-        <div><dt>Телефон</dt><dd><a href="tel:+70000000000">+7 (000) 000-00-00</a></dd></div>
-        <div><dt>Режим работы</dt><dd>Пн–Сб 9:00–20:00</dd></div>
-      </dl>
-      <p class="warning">Имеются противопоказания. Необходима консультация специалиста</p>
+  <section class="sec" id="where" aria-labelledby="where-title">
+    <div class="wrap sec__head" style="margin:0">
+      <h2 id="where-title">Как добраться</h2>
+      <p>ул. Примерная, 1, отдельный вход с торца, пандус есть. Парковка перед входом на 4 машины. Телефон: 8 (4234) 2X-XX-XX · номер скрыт в демо.</p>
     </div>
   </section>
+  <p class="warning">Имеются противопоказания. Необходима консультация специалиста</p>
 </main>
 
 <footer class="footer">
   <div class="wrap">
-    <span>© Стоматология «Эмаль»</span>
-    <p class="demo-note">Это демонстрационный сайт: клиника, врачи, адрес и телефон вымышлены. Такой сайт можно сделать для вашей клиники. <a href="../">Все примеры →</a></p>
+    <span>Стоматология «Эмаль», Уссурийск</span>
+    <p class="demo-note">Это демонстрационный сайт: клиника, врачи и адрес вымышлены, фото — Unsplash. Такой сайт можно сделать для вашей клиники. <a href="../">Все примеры →</a></p>
   </div>
 </footer>
 
 <dialog class="modal" data-modal aria-labelledby="modal-title">
   <div class="modal__body">
     <h2 id="modal-title">Заявка готова</h2>
-    <p>Вот что получит администратор клиники:</p>
+    <p>Вот что получит администратор:</p>
     <pre data-modal-text></pre>
     <p><strong>Это демо.</strong> На настоящем сайте заявка сразу уйдёт в WhatsApp, Telegram или на почту клиники.</p>
-    <button class="btn btn--primary" type="button" data-modal-close>Понятно</button>
+    <button class="btn btn--green" type="button" data-modal-close>Понятно</button>
   </div>
 </dialog>
 
 <script>
 (() => {
   const PRICES = [
-    { title: "Лечение зубов", from: 3500, items: [["Осмотр и консультация", "бесплатно"], ["Лечение кариеса", "от 3 500 ₽"], ["Лечение каналов (1 канал)", "от 4 500 ₽"], ["Художественная реставрация", "от 6 000 ₽"]] },
-    { title: "Гигиена", from: 3000, items: [["Профессиональная чистка (AirFlow + ультразвук)", "4 500 ₽"], ["Фторирование", "1 000 ₽"], ["Отбеливание", "от 15 000 ₽"]] },
-    { title: "Хирургия", from: 2500, items: [["Удаление простое", "от 2 500 ₽"], ["Удаление зуба мудрости", "от 6 000 ₽"], ["Костная пластика", "от 18 000 ₽"]] },
-    { title: "Имплантация", from: 32000, items: [["Имплант под ключ (с коронкой)", "от 55 000 ₽"], ["Установка импланта", "от 32 000 ₽"], ["3D-снимок (КТ)", "2 500 ₽"]] },
-    { title: "Ортодонтия", from: 35000, items: [["Консультация ортодонта", "1 500 ₽"], ["Брекеты металлические (1 челюсть)", "от 35 000 ₽"], ["Элайнеры", "от 120 000 ₽"]] },
-    { title: "Детская стоматология", from: 1500, items: [["Адаптационный приём", "бесплатно"], ["Лечение молочного зуба", "от 2 500 ₽"], ["Герметизация фиссур", "1 500 ₽"]] }
+    { title: "Лечение", from: 3900, items: [["Осмотр, снимок, план лечения", "0 ₽"], ["Кариес, пломба", "от 3 900 ₽"], ["Каналы, 1 канал", "от 4 800 ₽"], ["Реставрация переднего зуба", "от 6 500 ₽"]] },
+    { title: "Гигиена", from: 1100, items: [["Чистка AirFlow + ультразвук", "4 200 ₽"], ["Фторирование", "1 100 ₽"], ["Отбеливание в кабинете", "от 14 000 ₽"]] },
+    { title: "Хирургия", from: 2300, items: [["Удаление простое", "от 2 300 ₽"], ["Зуб мудрости", "от 5 500 ₽"], ["Синус-лифтинг", "от 21 000 ₽"]] },
+    { title: "Имплантация", from: 32000, items: [["Имплант под ключ с коронкой", "от 52 000 ₽"], ["Установка импланта", "от 32 000 ₽"], ["КТ челюсти", "2 400 ₽"]] },
+    { title: "Ортодонтия", from: 1200, items: [["Консультация ортодонта", "1 200 ₽"], ["Брекеты металлические, 1 челюсть", "от 33 000 ₽"], ["Элайнеры", "от 110 000 ₽"]] },
+    { title: "Детский приём", from: 0, items: [["Знакомство с врачом", "0 ₽"], ["Молочный зуб, лечение", "от 2 400 ₽"], ["Герметизация фиссур", "1 400 ₽"]] }
   ];
+  // дни приёма: 1 = пн … 6 = сб
   const DOCTORS = [
-    { id: "a", name: "Анна Сергеевна", role: "Стоматолог-терапевт", exp: "Стаж 11 лет", area: "Лечение" },
-    { id: "b", name: "Игорь Павлович", role: "Хирург-имплантолог", exp: "Стаж 15 лет", area: "Хирургия" },
-    { id: "c", name: "Марина Олеговна", role: "Ортодонт", exp: "Стаж 9 лет", area: "Ортодонтия" },
-    { id: "d", name: "Ольга Викторовна", role: "Детский стоматолог", exp: "Стаж 7 лет", area: "Дети" },
-    { id: "e", name: "Денис Андреевич", role: "Терапевт, гигиенист", exp: "Стаж 6 лет", area: "Лечение" }
+    { id: "a", name: "Анна Сергеевна", role: "Терапевт", area: "Лечение", days: [1, 2, 3, 4, 5] },
+    { id: "b", name: "Игорь Павлович", role: "Хирург-имплантолог, главврач", area: "Хирургия", days: [1, 3, 5] },
+    { id: "c", name: "Марина Олеговна", role: "Ортодонт", area: "Ортодонтия", days: [2, 4, 6] },
+    { id: "d", name: "Ольга Викторовна", role: "Детский стоматолог", area: "Дети", days: [1, 2, 4, 6] },
+    { id: "e", name: "Денис Андреевич", role: "Терапевт, гигиенист", area: "Лечение", days: [3, 4, 5, 6] }
   ];
   const AREAS = ["Все", ...new Set(DOCTORS.map(d => d.area))];
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
   const initials = n => n.split(" ").map(w => w[0]).join("");
+  const docById = Object.fromEntries(DOCTORS.map(d => [d.id, d]));
+  const shortRole = d => d.role.split(",")[0];
 
   $("[data-prices]").innerHTML = PRICES.map((p, i) => `
     <details${i === 0 ? " open" : ""}>
-      <summary>${p.title}<small>от ${p.from.toLocaleString("ru-RU")} ₽</small></summary>
-      <ul>${p.items.map(([n, v]) => `<li><span>${n}</span><b>${v}</b></li>`).join("")}</ul>
+      <summary>${p.title}<small>${p.from ? "от " + p.from.toLocaleString("ru-RU") + " ₽" : "есть бесплатное"}</small></summary>
+      <table><tbody>${p.items.map(([n, v]) => `<tr><td>${n}</td><td>${v}</td></tr>`).join("")}</tbody></table>
     </details>`).join("");
 
-  // врачи с фильтром по направлению
   let area = "Все";
   $("[data-chips]").innerHTML = AREAS.map(a => `<button class="chip" type="button" data-area="${a}" aria-pressed="${a === area}">${a}</button>`).join("");
+  const WDN = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
   function renderDoctors() {
     $("[data-doctors]").innerHTML = DOCTORS.filter(d => area === "Все" || d.area === area).map(d => `
-      <article class="doctor">
-        <div class="avatar" aria-hidden="true">${initials(d.name)}</div>
-        <h3>${d.name}</h3><p>${d.role}</p><small>${d.exp}</small>
-      </article>`).join("");
+      <li class="doctor"><i aria-hidden="true">${initials(d.name)}</i>
+        <div><b>${d.name}</b><span>${d.role} · принимает ${d.days.map(x => WDN[x]).join(", ")}</span></div>
+        <a href="#booking" data-book="${d.id}">Записаться</a></li>`).join("");
   }
   $("[data-chips]").addEventListener("click", e => {
     const b = e.target.closest("[data-area]"); if (!b) return;
@@ -343,51 +377,61 @@ svg { display: block; }
 
   // запись
   const MONTHS = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"];
-  const WD = ["вс", "пн", "вт", "ср", "чт", "пт", "сб"];
   const today = new Date(); today.setHours(0, 0, 0, 0);
-  // ближайшие 7 рабочих дней (кроме воскресенья)
   const days = [];
   for (let i = 0; days.length < 7; i++) { const d = new Date(today); d.setDate(d.getDate() + i); if (d.getDay() !== 0) days.push(d); }
-  const st = { doc: DOCTORS[0].id, day: 0, time: null };
+  const st = { doc: "a", day: 0, time: null };
 
   function slots(docId, d) {
+    if (!docById[docId].days.includes(d.getDay())) return [];
+    const sat = d.getDay() === 6;
     const out = [], seed = d.getDate() * 11 + docId.charCodeAt(0) * 5;
-    for (let m = 9 * 60; m <= 19 * 60; m += 30) {
+    for (let m = (sat ? 9 : 8) * 60; m <= (sat ? 14 * 60 + 30 : 19 * 60); m += 30) {
       if ((seed + m / 30 * 7) % 3 === 0) continue;
       if (d.getTime() === today.getTime()) { const n = new Date(); if (m <= n.getHours() * 60 + n.getMinutes() + 60) continue; }
       out.push(`${Math.floor(m / 60)}:${m % 60 ? "30" : "00"}`);
     }
     return out;
   }
-  const docById = Object.fromEntries(DOCTORS.map(d => [d.id, d]));
   const dayLabel = d => `${d.getDate()} ${MONTHS[d.getMonth()]}`;
+  const relDay = d => { const diff = Math.round((d - today) / 864e5); return diff === 0 ? "Сегодня" : diff === 1 ? "Завтра" : dayLabel(d); };
+
+  // ближайшее свободное время среди всех врачей — в карточке на первом экране
+  (function nearest() {
+    for (const d of days) for (const doc of DOCTORS) {
+      const s = slots(doc.id, d);
+      if (s.length) { $("[data-next-time]").textContent = `${relDay(d)}, ${s[0]}`; $("[data-next-doc]").textContent = `${doc.name}, ${shortRole(doc).toLowerCase()}`; return; }
+    }
+  })();
 
   function renderBooking(focusSel) {
     $("[data-pick-doc]").innerHTML = DOCTORS.map(d => `
-      <button class="opt" type="button" data-doc="${d.id}" aria-pressed="${st.doc === d.id}">
-        <span class="avatar" aria-hidden="true">${initials(d.name)}</span><b>${d.name}</b><span>${d.role}</span>
-      </button>`).join("");
+      <button class="opt" type="button" data-doc="${d.id}" aria-pressed="${st.doc === d.id}"><b>${d.name}</b><span>${shortRole(d)}</span></button>`).join("");
     $("[data-days]").innerHTML = days.map((d, i) => `
-      <button class="day" type="button" data-day="${i}" aria-pressed="${st.day === i}" aria-label="${WD[d.getDay()]}, ${dayLabel(d)}"><small>${WD[d.getDay()]}</small>${d.getDate()}</button>`).join("");
+      <button class="day" type="button" data-day="${i}" aria-pressed="${st.day === i}" aria-label="${WDN[d.getDay()]}, ${dayLabel(d)}"><small>${WDN[d.getDay()]}</small>${d.getDate()}</button>`).join("");
     const ts = slots(st.doc, days[st.day]);
     $("[data-times]").innerHTML = ts.length
       ? `<div class="times" role="group" aria-label="Время">${ts.map(t => `<button class="time" type="button" data-time="${t}" aria-pressed="${st.time === t}">${t}</button>`).join("")}</div>`
-      : `<p class="hint">В этот день у врача нет свободного времени — выберите другой день.</p>`;
+      : `<p class="hint">В этот день врач не принимает или всё занято. Выберите другой день.</p>`;
     const d = docById[st.doc];
-    $("[data-summary]").innerHTML = `<b>${d.name}, ${d.role.toLowerCase()}</b>${st.time ? `${dayLabel(days[st.day])}, ${st.time}` : "Выберите день и время"}`;
+    $("[data-summary]").innerHTML = `<b>${d.name}</b>${st.time ? `${dayLabel(days[st.day])}, ${st.time}` : "выберите день и время"}`;
     if (focusSel) $(focusSel)?.focus();
   }
-  $("[data-pick-doc]").closest(".panel").addEventListener("click", e => {
+  const firstDayFor = id => Math.max(0, days.findIndex(d => slots(id, d).length));
+  $("[data-picker]").addEventListener("click", e => {
     const b = e.target.closest("button"); if (!b) return;
     let sel;
-    if (b.dataset.doc) { st.doc = b.dataset.doc; st.time = null; sel = `[data-doc="${st.doc}"]`; }
+    if (b.dataset.doc) { st.doc = b.dataset.doc; st.time = null; st.day = firstDayFor(st.doc); sel = `[data-doc="${st.doc}"]`; }
     if (b.dataset.day) { st.day = Number(b.dataset.day); st.time = null; sel = `[data-day="${st.day}"]`; }
     if (b.dataset.time) { st.time = b.dataset.time; sel = `[data-time="${st.time}"]`; }
     $("[data-slot-err]").hidden = true;
     renderBooking(sel);
   });
-  // первый день, где у первого врача есть свободное время
-  st.day = Math.max(0, days.findIndex(d => slots(st.doc, d).length));
+  $("[data-doctors]").addEventListener("click", e => {
+    const a = e.target.closest("[data-book]"); if (!a) return;
+    st.doc = a.dataset.book; st.time = null; st.day = firstDayFor(st.doc); renderBooking();
+  });
+  st.day = firstDayFor(st.doc);
 
   $("[data-form]").addEventListener("submit", e => {
     e.preventDefault();
@@ -402,7 +446,7 @@ svg { display: block; }
     const d = docById[st.doc];
     $("[data-modal-text]").textContent = [
       ["Запись с сайта"],
-      [`Врач: ${d.name} (${d.role.toLowerCase()})`, `Когда: ${dayLabel(days[st.day])}, ${st.time}`],
+      [`Врач: ${d.name} (${shortRole(d).toLowerCase()})`, `Когда: ${dayLabel(days[st.day])}, ${st.time}`],
       [`Имя: ${f.name.value.trim()}`, `Телефон: ${f.phone.value.trim()}`]
     ].map(b => b.join("\n")).join("\n\n");
     $("[data-modal]").showModal();
